@@ -1,2 +1,2 @@
-# Shooter
-Shooter game
+# FPS
+FPS game
