@@ -38,23 +38,6 @@ public class Network : Photon.MonoBehaviour
 		PhotonNetwork.CreateRoom(null);
 	}
 
-	//void OnEnable()
-	//{
-	//	//OnSceneLoaded function to start listening for a scene change as soon as this script is enabled.
-	//	SceneManager.sceneLoaded += OnSceneLoaded;
-	//}
-
-	//void OnDisable()
-	//{
-	//	//OnSceneLoaded function to stop listening for a scene change as soon as this script is disabled.
-	//	SceneManager.sceneLoaded -= OnSceneLoaded;
-	//}
-
-	//private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-	//{
-	//	Debug.Log(System.String.Format("Scene {0} has been loaded.", scene.name, mode.ToString()));
-	//}
-
 	private void OnLevelWasLoaded(int level)
 	{
 		if (level != 0)
