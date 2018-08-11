@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour {
 	{
 		if(nickname.text.Length >= 4)
 		{
+			CameraScript.initiation = true;
 			PhotonNetwork.playerName = nickname.text; 
 			network.ConnectToServer();
 		}

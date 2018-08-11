@@ -7,7 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class Network : Photon.MonoBehaviour
 {
-	private void Update()
+	MyGameManager mgm;
+
+	void Start()
+	{
+		mgm = GetComponent<MyGameManager>();
+	}
+
+	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.L))
 		{
@@ -30,7 +37,6 @@ public class Network : Photon.MonoBehaviour
 	void OnJoinedLobby()
 	{
 		SceneManager.LoadScene(1);
-		//PhotonNetwork.JoinRandomRoom();
 	}
 
 	void OnPhotonRandomJoinFailed()
@@ -72,6 +78,12 @@ public class Network : Photon.MonoBehaviour
 		player.nickname = pPlayer.NickName;
 		player.pPlayer = pPlayer;
 		Player.players.Add(player);
+
+		if(pPlayer == PhotonNetwork.player)
+		{
+			// Spawn a player
+			mgm.SpawnPlayer();
+		}
 	}
 
 	[PunRPC]
@@ -92,6 +104,3 @@ public class Network : Photon.MonoBehaviour
 		photonView.RPC("PlayerIn", PhotonTargets.AllBuffered, PhotonNetwork.player);
 	}
 }
-
-
-	
