@@ -8,6 +8,7 @@ public class Player {
 	public string nickname = "";
 	public PhotonPlayer pPlayer;
 	public Team team;
+	public GameObject go;
 
 	public static List<Player> players = new List<Player>();
 
@@ -18,7 +19,7 @@ public class Player {
 
 		foreach (var player in players)
 		{
-			debugString = "Nickname: " + player.nickname + ", team: " + player.team + "\n";
+			debugString += "ID: " + i + ", nickname: " + player.nickname + ", team: " + player.team + "\n";
 			i++;
 		}
 
@@ -39,5 +40,5 @@ public class Player {
 	}
 }
 
-public enum Team { TeamA, TeamB }
+public enum Team { TeamCT, TeamT }
 

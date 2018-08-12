@@ -58,13 +58,14 @@ public class Network : Photon.MonoBehaviour
 		{
 			int team = 0;
 
-			if(Player.players[Player.players.Count - 1].team == Team.TeamA)
+			if(Player.players[Player.players.Count - 1].team == Team.TeamCT)
 			{
-				team = 2;
+				team = 1;
 			}
 
-			else {
-				team = 1;
+			else
+			{
+				team = 0;
 			}
 
 			// get PlayerIn, add pPlayer to the list and show it to every player

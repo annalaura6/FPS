@@ -44877,7 +44877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 916309400}
   m_Layer: 0
-  m_Name: TeamA
+  m_Name: TeamT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90115,7 +90115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1761165659}
   m_Layer: 0
-  m_Name: TeamB
+  m_Name: TeamCT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
