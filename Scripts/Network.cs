@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Network : Photon.MonoBehaviour
 {
-	MyGameManager mgm;
+	MyGameManager myGameManager;
 
 	void Start()
 	{
-		mgm = GetComponent<MyGameManager>();
+		myGameManager = GetComponent<MyGameManager>();
 	}
 
 	void Update()
@@ -56,8 +56,19 @@ public class Network : Photon.MonoBehaviour
 	{
 		if (PhotonNetwork.isMasterClient)
 		{
+			int team = 0;
+
+			if(Player.players[Player.players.Count - 1].team == Team.TeamA)
+			{
+				team = 2;
+			}
+
+			else {
+				team = 1;
+			}
+
 			// get PlayerIn, add pPlayer to the list and show it to every player
-			photonView.RPC("PlayerIn", PhotonTargets.AllBuffered, pPlayer);
+			photonView.RPC("PlayerIn", PhotonTargets.AllBuffered, pPlayer, team);
 		}
 
 	}
@@ -72,17 +83,20 @@ public class Network : Photon.MonoBehaviour
 	}
 
 	[PunRPC]
-	void PlayerIn(PhotonPlayer pPlayer)
+	void PlayerIn(PhotonPlayer pPlayer, int team)
 	{
 		Player player = new Player();
+		Player.players.Add(player);
 		player.nickname = pPlayer.NickName;
 		player.pPlayer = pPlayer;
-		Player.players.Add(player);
+		
+		player.team = (Team) team;
 
 		if(pPlayer == PhotonNetwork.player)
 		{
 			// Spawn a player
-			mgm.SpawnPlayer();
+			Player.myPlayer = player;
+			myGameManager.SpawnPlayer();
 		}
 	}
 
@@ -101,6 +115,8 @@ public class Network : Photon.MonoBehaviour
 		//Remote Procedure Call (RPC) is a protocol that one program can use to request a service 
 		//from a program located in another computer on a network without having to understand the network's details.
 
-		photonView.RPC("PlayerIn", PhotonTargets.AllBuffered, PhotonNetwork.player);
+		int team = Random.Range(0, 2);
+		//Team randomTeam = (Team) Random.Range(1,3);
+		photonView.RPC("PlayerIn", PhotonTargets.AllBuffered, PhotonNetwork.player, team);
 	}
 }

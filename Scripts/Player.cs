@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Player {
 
+	public static Player myPlayer;
 	public string nickname = "";
 	public PhotonPlayer pPlayer;
+	public Team team;
 
 	public static List<Player> players = new List<Player>();
 
 	public static void DebugPlayerList()
 	{
-		Debug.Log("Number of players: " + players.Count + ". Current players: ");
+		string debugString = "Number of players: " + players.Count + ". Current players: \n";
+		int i = 0;
 
 		foreach (var player in players)
 		{
-			Debug.Log(player.nickname);
+			debugString = "Nickname: " + player.nickname + ", team: " + player.team + "\n";
+			i++;
 		}
+
+		Debug.Log(debugString);		
 	}
 
 	public static Player FindPlayer(PhotonPlayer pPlayer)
@@ -32,4 +38,6 @@ public class Player {
 		return null;
 	}
 }
+
+public enum Team { TeamA, TeamB }
 
